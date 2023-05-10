@@ -1,5 +1,3 @@
-import click
-
 print("hi there")
 print("╔═══╤═══╤═══╦═══╤═══╤═══╦═══╤═══╤═══╗");
 for y in range(2):
