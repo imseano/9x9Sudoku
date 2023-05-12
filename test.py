@@ -13,16 +13,16 @@ Problem = [
 [0,0,5,2,0,6,3,0,0],
 ]
 
+selected = [0,0] # Selected space (x,y)
 
 
 def main():
-    print("SUDOKU")
+    print("TERMINAL SUDOKU")
     print("Press 1 to start")
-    while True:
+    while True: # Input validation
         gamemode = input()
         try:
             gamemode = int(gamemode)
-           # gamemode = 1
         except:
             print("Invalid input")
             continue
@@ -30,8 +30,8 @@ def main():
             print("Invalid number")
             continue
         break
-
-    printSudokuTable()
+    game()
+    exitGame()
 
 def printSudokuTable():
     print("╔═══╤═══╤═══╦═══╤═══╤═══╦═══╤═══╤═══╗");
@@ -56,5 +56,21 @@ def printSudokuTable():
                 print("╠═══╪═══╪═══╬═══╪═══╪═══╬═══╪═══╪═══╣")
             else:
                 print("╟───┼───┼───╫───┼───┼───╫───┼───┼───╢")
+
+def game():
+    running = True
+    while running:
+        printSudokuTable()
+        print("Press Q to quit")
+        choice = input("Your next move: ")
+        match choice:
+            case "Q" :
+                running = False
+            case _ :
+                print("Invalid")
+
+def exitGame():
+    print("Game Over! Thanks for playing!")
+    quit()
     
 main()
