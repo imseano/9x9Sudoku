@@ -13,7 +13,7 @@ Problem = [
 [0,0,5,2,0,6,3,0,0],
 ]
 
-selected = [0,1] # Selected space (x,y)
+selected = [0,0] # Selected space (x,y)
 
 
 def main():
@@ -63,6 +63,7 @@ def printSudokuTable(Problem):
 def game():
     Game_Board = Problem
     running = True
+    findNearestEmptySpace(Game_Board)
     while running:
         printSudokuTable(Game_Board)
         print(selected)
@@ -70,7 +71,7 @@ def game():
         print("Press u, d, l, r to move to cursor")
         print("Input a # from 1 - 9 to add it to the square")
         choice = input("Your next move: ")
-        match choice:
+        match choice: # Note: Only works with 3.10+ versions of Python.
             case "Q" :
                 running = False
             case "u" :
@@ -116,18 +117,32 @@ def game():
             case "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" :
                 print("inserted a " + str(choice) + " at " + str(selected))
                 Game_Board[selected[0]][selected[1]] = int(choice)
-                search_right = selected[1]
-                for x in range(9):
-                   search_right += 1
-                   if search_right > 8:
-                       search_right -= 9
-                   print(search_right)
-                   if Game_Board[selected[0]][search_right] == 0:
-                       selected[1] = search_right
-                       break
+                search_row = selected[0]
+                search_col = selected[1]
+                free_space_found = False
+                findNearestEmptySpace(Game_Board)
             case _ :
                 print("Invalid")
 
+def findNearestEmptySpace(Board):
+    search_row = selected[0]
+    search_col = selected[1]
+    free_space_found = False
+    for x in range(9):
+        for y in range(9):
+            search_col += 1
+            if search_col > 8:
+                search_col -= 9
+            if Board[search_row][search_col] == 0:
+                selected[1] = search_col
+                selected[0] = search_row
+                free_space_found = True
+                break
+        if free_space_found:
+            break
+        search_row += 1
+        if search_row > 8:
+            search_row -= 9
 def exitGame():
     print("Game Over! Thanks for playing!")
     quit()
