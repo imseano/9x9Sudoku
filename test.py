@@ -33,15 +33,15 @@ def main():
     game()
     exitGame()
 
-def printSudokuTable(Problem):
+def printSudokuTable(Board_Problem):
     print("╔═══╤═══╤═══╦═══╤═══╤═══╦═══╤═══╤═══╗");
     for y in range(3):
         for x in range(3):
             s_row_val = (3 * y) + x # Current sudoku row
             row = "║"
             for z in range(9):
-                num = str(Problem[s_row_val][z])
-                if Problem[s_row_val][z] == 0:
+                num = str(Board_Problem[s_row_val][z])
+                if Board_Problem[s_row_val][z] == 0:
                     if s_row_val == selected[0] and z == selected[1]:
                         num = "X"
                     else: 
@@ -61,7 +61,7 @@ def printSudokuTable(Problem):
                 print("╟───┼───┼───╫───┼───┼───╫───┼───┼───╢")
 
 def game():
-    Game_Board = Problem
+    Game_Board = Problem.copy()
     running = True
     findNearestEmptySpace(Game_Board)
     while running:
@@ -143,6 +143,8 @@ def findNearestEmptySpace(Board):
         search_row += 1
         if search_row > 8:
             search_row -= 9
+    
+
 def exitGame():
     print("Game Over! Thanks for playing!")
     quit()
