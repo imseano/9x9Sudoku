@@ -81,11 +81,15 @@ def game():
         printSudokuTable(Game_Board)
         print(selected)
         print("Press Q to quit")
+        print("Press F when finished filling out the sudoku table")
         print("Press u, d, l, r to move to cursor")
         print("Input a # from 1 - 9 to add it to the square")
         choice = input("Your next move: ")
         match choice: # Note: Only works with 3.10+ versions of Python.
             case "Q" :
+                running = False
+            case "F":
+                check(Game_Board)
                 running = False
             case "u" :
                 search_up = selected[0]
@@ -178,6 +182,11 @@ def check(player_board):
             dup = ifdup(row)
             if dup:
                 print(f"Duplicate values at row {i+1}  at position:{dup}")
+    
+        for i, row in enumerate(player_board):    
+            dup = ifdup(getColumn(player_board, i))
+            if dup:
+                print(f"Duplicate values at column {dup[1]}  at position:{dup}")
                 
         if player_board == a1:
             print("correct answer")
@@ -202,7 +211,14 @@ def ifdup(array):
             else:
                 exist[num] = i
     return dup
-#check if there are any empty spaces        
+#check if there are any empty spaces
+
+def getColumn(player_board, columnNum):
+    column = []
+    for row in player_board:
+        column.append(row[columnNum])
+    return column
+
 def check_for0(Board):
     for row in Board:
         if 0 in row:
