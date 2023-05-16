@@ -7,6 +7,6 @@ To-Do List:
   - [X] Board Navigation (Sean)
   - [ ] Optional: Undo Button
 - [ ] Game Logic https://www.kristanix.com/sudokuepic/sudoku-rules.php
-  - [ ] Checking Board for Win-state
-  - [ ] Preventing players from inputting duplicate numbers (Ex. inserting a 9 on a row that already has a 9)
+  - [ ] Checking Board for Win-state (Aaron, )
+  - [ ] Preventing players from inputting duplicate numbers (Ex. inserting a 9 on a row that already has a 9) (Aaron, )
   - [ ] Optional: Randomly Generated Puzzles/Solutions
