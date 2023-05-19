@@ -131,12 +131,13 @@ def game():
                        selected[1] = search_right
                        break
             case "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" :
-                print("inserted a " + str(choice) + " at " + str(selected))
                 Game_Board[selected[0]][selected[1]] = int(choice)
-                search_row = selected[0]
-                search_col = selected[1]
-                free_space_found = False
-                findNearestEmptySpace(Game_Board)
+                if checkMove(int(choice), Game_Board):
+                    print("inserted a " + str(choice) + " at " + str(selected))
+                    findNearestEmptySpace(Game_Board)
+                else:
+                    Game_Board[selected[0]][selected[1]] = 0
+                    print("Inserting a " + str(choice) + " at " + str(selected) +  " is an illegal move")
             case _ :
                 print("Invalid")
 
@@ -159,8 +160,12 @@ def findNearestEmptySpace(Board):
         search_row += 1
         if search_row > 8:
             search_row -= 9
-            
-            
+
+# Returns true if the inserted number is a legal move
+def checkMove(submission, player_board):
+    if ifdup(getColumn(player_board, selected[1])) == submission or ifdup(player_board[selected[0]]) == submission:
+        return False
+    return True
             
 def check(player_board):
     if check_for0(player_board) == True:
