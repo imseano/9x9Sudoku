@@ -78,7 +78,6 @@ def game():
     running = True
     findNearestEmptySpace(Game_Board)
     while running:
-        printSudokuTable(Problem)
         printSudokuTable(Game_Board)
         print(selected)
         print("Press Q to quit")
@@ -143,7 +142,8 @@ def game():
                     print("Inserting a " + str(choice) + " at " + str(selected) +  " is an illegal move")
             case "R" :
                     Game_Board = copy.deepcopy(Problem)
-                    selected = [0,0]
+                    selected[0] = 0
+                    selected[1] = 0
                     findNearestEmptySpace(Game_Board)
             case _ :
                 print("Invalid")
