@@ -52,7 +52,7 @@ def printSudokuTable(Board_Problem):
         for x in range(3):
             s_row_val = (3 * y) + x # Current sudoku row
             row = "║"
-            for z in range(9):
+            for z in range(9):      # Code for filling each space
                 num = str(Board_Problem[s_row_val][z])
                 if Board_Problem[s_row_val][z] == 0:
                     if s_row_val == selected[0] and z == selected[1]:
@@ -64,7 +64,6 @@ def printSudokuTable(Board_Problem):
                     row += "║"  
                 else:
                     row += "│"
-                #print("║   │   │   ║   │   │   ║   │   │   ║")
             print(row)
             if y == 2 and x == 2:
                 print("╚═══╧═══╧═══╩═══╧═══╧═══╩═══╧═══╧═══╝")
