@@ -163,14 +163,22 @@ def findNearestEmptySpace(Board):
 
 # Returns true if the inserted number is a legal move
 def checkMove(submission, player_board):
-    print("Col = " + str(getColumn(player_board, selected[1])))
-    print("Row = " + str(player_board[selected[0]]))
-    print("Col duplicates " + str(ifdup(getColumn(player_board, selected[1]))))
-    print("Row duplicates " + str(ifdup(player_board[selected[0]])))
-    if submission in ifdup(getColumn(player_board, selected[1])) or submission in ifdup(player_board[selected[0]]):
+    #print("Square = " + str(getSquare(player_board, getCurrentSquare())))
+    if submission in ifdup(getColumn(player_board, selected[1])) or submission in ifdup(player_board[selected[0]]) or submission in ifdup(getSquare(player_board, getCurrentSquare())):
         return False
     return True
-            
+
+# A Square is the 3x3 smaller squares that make up a Sudoku table.
+# [0 1 2]
+# [3 4 5] 
+# [6 7 8]
+# This returns the square the cursor is currently in.
+def getCurrentSquare():
+    row = selected[0]
+    col = selected[1]
+    squareNum = (selected[1] // 3) + (3 * (selected[0] // 3))
+    return squareNum
+
 def check(player_board):
     if check_for0(player_board) == True:
         a1 = [
