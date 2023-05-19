@@ -1,3 +1,4 @@
+import copy
 from array import *
 # Sudoku board represented by a 2d array
 # 0 = empty space
@@ -73,14 +74,16 @@ def printSudokuTable(Board_Problem):
                 print("╟───┼───┼───╫───┼───┼───╫───┼───┼───╢")
 
 def game():
-    Game_Board = Problem.copy()
+    Game_Board = copy.deepcopy(Problem)
     running = True
     findNearestEmptySpace(Game_Board)
     while running:
+        printSudokuTable(Problem)
         printSudokuTable(Game_Board)
         print(selected)
         print("Press Q to quit")
         print("Press F when finished filling out the sudoku table")
+        print("Press R to restart the board")
         print("Press u, d, l, r to move to cursor")
         print("Input a # from 1 - 9 to add it to the square")
         choice = input("Your next move: ")
@@ -138,6 +141,10 @@ def game():
                 else:
                     Game_Board[selected[0]][selected[1]] = 0
                     print("Inserting a " + str(choice) + " at " + str(selected) +  " is an illegal move")
+            case "R" :
+                    Game_Board = copy.deepcopy(Problem)
+                    selected = [0,0]
+                    findNearestEmptySpace(Game_Board)
             case _ :
                 print("Invalid")
 
