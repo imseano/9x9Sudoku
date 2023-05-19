@@ -80,6 +80,9 @@ def game():
     while running:
         printSudokuTable(Game_Board)
         print(selected)
+        if (check_for0(Game_Board)):
+                check(Game_Board)
+                running = False
         print("Press Q to quit")
         print("Press F when finished filling out the sudoku table")
         print("Press R to restart the board")
@@ -88,9 +91,6 @@ def game():
         choice = input("Your next move: ")
         match choice: # Note: Only works with 3.10+ versions of Python.
             case "Q" :
-                running = False
-            case "F":
-                check(Game_Board)
                 running = False
             case "u" :
                 search_up = selected[0]
