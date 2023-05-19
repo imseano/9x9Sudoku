@@ -222,12 +222,14 @@ def getColumn(player_board, columnNum):
 # [0 1 2]
 # [3 4 5]  is represented as [0,1,2,3,4,5,6,7,8]
 # [6 7 8]
+# This returns the given array.
 def getSquare(player_board, squareNum):
     square = []
     startingPosition = [(squareNum % 3) * 3, (squareNum // 3) * 3] ## Gets the starting position of the search.
     for x in range(3):
         for y in range(3):
             square.append(player_board[startingPosition[0] + x][startingPosition[1] + y])
+    return square
 
 
 def check_for0(Board):
