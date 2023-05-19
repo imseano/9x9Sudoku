@@ -84,7 +84,6 @@ def game():
                 check(Game_Board)
                 running = False
         print("Press Q to quit")
-        print("Press F when finished filling out the sudoku table")
         print("Press R to restart the board")
         print("Press u, d, l, r to move to cursor")
         print("Input a # from 1 - 9 to add it to the square")
