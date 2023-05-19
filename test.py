@@ -163,7 +163,11 @@ def findNearestEmptySpace(Board):
 
 # Returns true if the inserted number is a legal move
 def checkMove(submission, player_board):
-    if ifdup(getColumn(player_board, selected[1])) == submission or ifdup(player_board[selected[0]]) == submission:
+    print("Col = " + str(getColumn(player_board, selected[1])))
+    print("Row = " + str(player_board[selected[0]]))
+    print("Col duplicates " + str(ifdup(getColumn(player_board, selected[1]))))
+    print("Row duplicates " + str(ifdup(player_board[selected[0]])))
+    if submission in ifdup(getColumn(player_board, selected[1])) or submission in ifdup(player_board[selected[0]]):
         return False
     return True
             
@@ -196,7 +200,7 @@ def check(player_board):
             print("correct answer")
         elif player_board != a1:
             print("wrong answer")
-    elif checkfor0(playerboard) == False:
+    elif check_for0(player_board) == False:
         print("not complete")
 
 #check if any duplicates within an array
@@ -210,8 +214,8 @@ def ifdup(array):
         if num !=0:
             #if the number exists in the dictionary append to duplicate list with its positions
             if num in exist:
-                dup.append(i)
-                dup.append(exist[num])
+                #dup.append(i)
+                dup.append(num)
             else:
                 exist[num] = i
     return dup
