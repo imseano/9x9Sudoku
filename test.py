@@ -31,7 +31,7 @@ selected = [0,0] # Selected space (x,y)
 
 
 def main():
-    print("TERMINAL SUDOKU")
+    print("TERMINAL SUDOKU by Bit Bros")
     print("Press 1 to start")
     while True: # Input validation
         gamemode = input()
@@ -169,7 +169,6 @@ def findNearestEmptySpace(Board):
 
 # Returns true if the inserted number is a legal move
 def checkMove(submission, player_board):
-    #print("Square = " + str(getSquare(player_board, getCurrentSquare())))
     if submission in ifdup(getColumn(player_board, selected[1])) or submission in ifdup(player_board[selected[0]]) or submission in ifdup(getSquare(player_board, getCurrentSquare())):
         return False
     return True
